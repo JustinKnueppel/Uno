@@ -19,5 +19,16 @@ describe("Helper functions", () => {
       const secondZero = new Card(Type.ZERO, Color.RED);
       expect(Helpers.canPlayOn(firstZero, secondZero)).to.be.true;
     });
+    it("Play wild on any color", () => {
+      const wild = new Card(Type.WILD, Color.WILD)
+      const blue = new Card(Type.ZERO, Color.BLUE);
+      const red = new Card(Type.ZERO, Color.RED);
+      const yellow = new Card(Type.ZERO, Color.YELLOW);
+      const green = new Card(Type.ZERO, Color.GREEN);
+      expect(Helpers.canPlayOn(wild, blue)).to.be.true
+      expect(Helpers.canPlayOn(wild, red)).to.be.true
+      expect(Helpers.canPlayOn(wild, yellow)).to.be.true
+      expect(Helpers.canPlayOn(wild, green)).to.be.true
+    })
   });
 });
