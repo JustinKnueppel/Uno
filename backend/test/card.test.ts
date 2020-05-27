@@ -9,6 +9,12 @@ describe("Card has class Card", () => {
 
 describe("Card has Type enum", () => {
   it("Should exist", () => {
-    expect(Card.Type).is.not.undefined
-  })
-})
+    expect(Card.Type).is.not.undefined;
+  });
+});
+
+describe("Card as Color enum", () => {
+  it("Should exist", () => {
+    expect(Card.Color).is.not.undefined;
+  });
+});

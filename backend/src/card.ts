@@ -21,4 +21,12 @@ enum Type {
   DRAW_FOUR,
 }
 
-export { Card, Type };
+enum Color {
+  RED,
+  BLUE,
+  YELLOW,
+  GREEN,
+  WILD
+}
+
+export { Card, Type, Color };
