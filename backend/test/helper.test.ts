@@ -21,33 +21,39 @@ describe("Helper functions", () => {
     });
 
     it("Play wild on any color", () => {
-      const wild = new Card(Type.WILD, Color.WILD)
+      const wild = new Card(Type.WILD, Color.WILD);
       const blue = new Card(Type.ZERO, Color.BLUE);
       const red = new Card(Type.ZERO, Color.RED);
       const yellow = new Card(Type.ZERO, Color.YELLOW);
       const green = new Card(Type.ZERO, Color.GREEN);
-      expect(Helpers.canPlayOn(wild, blue)).to.be.true
-      expect(Helpers.canPlayOn(wild, red)).to.be.true
-      expect(Helpers.canPlayOn(wild, yellow)).to.be.true
-      expect(Helpers.canPlayOn(wild, green)).to.be.true
-    })
+      expect(Helpers.canPlayOn(wild, blue)).to.be.true;
+      expect(Helpers.canPlayOn(wild, red)).to.be.true;
+      expect(Helpers.canPlayOn(wild, yellow)).to.be.true;
+      expect(Helpers.canPlayOn(wild, green)).to.be.true;
+    });
 
     it("Cannot play non-wild card of different number and color", () => {
-      const firstCard = new Card(Type.ZERO, Color.BLUE)
-      const secondCard = new Card(Type.ONE, Color.RED)
-      expect(Helpers.canPlayOn(firstCard, secondCard)).to.be.false
-    })
+      const firstCard = new Card(Type.ZERO, Color.BLUE);
+      const secondCard = new Card(Type.ONE, Color.RED);
+      expect(Helpers.canPlayOn(firstCard, secondCard)).to.be.false;
+    });
 
     it("Can play draw four on any color", () => {
-      const drawFour = new Card(Type.DRAW_FOUR, Color.WILD)
+      const drawFour = new Card(Type.DRAW_FOUR, Color.WILD);
       const blue = new Card(Type.ZERO, Color.BLUE);
       const red = new Card(Type.ZERO, Color.RED);
       const yellow = new Card(Type.ZERO, Color.YELLOW);
       const green = new Card(Type.ZERO, Color.GREEN);
-      expect(Helpers.canPlayOn(drawFour, blue)).to.be.true
-      expect(Helpers.canPlayOn(drawFour, red)).to.be.true
-      expect(Helpers.canPlayOn(drawFour, yellow)).to.be.true
-      expect(Helpers.canPlayOn(drawFour, green)).to.be.true
-    })
+      expect(Helpers.canPlayOn(drawFour, blue)).to.be.true;
+      expect(Helpers.canPlayOn(drawFour, red)).to.be.true;
+      expect(Helpers.canPlayOn(drawFour, yellow)).to.be.true;
+      expect(Helpers.canPlayOn(drawFour, green)).to.be.true;
+    });
+
+    it("Can play number on correct colored wild", () => {
+      const number = new Card(Type.ZERO, Color.BLUE);
+      const wild = new Card(Type.WILD, Color.BLUE);
+      expect(Helpers.canPlayOn(number, wild)).to.be.true;
+    });
   });
 });
