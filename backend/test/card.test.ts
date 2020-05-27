@@ -13,8 +13,14 @@ describe("Card has Type enum", () => {
   });
 });
 
-describe("Card as Color enum", () => {
+describe("Card has Color enum", () => {
   it("Should exist", () => {
     expect(Card.Color).is.not.undefined;
+  });
+});
+
+describe("Card can be instantiated", () => {
+  it("Should create an object", () => {
+    expect(new Card.Card(Card.Type.ZERO, Card.Color.RED)).is.not.null;
   });
 });

@@ -1,5 +1,9 @@
 class Card {
-  constructor() {
+  readonly type: Type
+  readonly color: Color
+  constructor(type: Type, color: Color) {
+    this.type = type;
+    this.color = color;
   }
 }
 
