@@ -16,6 +16,10 @@ class Deck {
   size(): number {
     return this.cards.length;
   }
+
+  empty(): boolean {
+    return this.size() === 0;
+  }
 }
 
 const getFullDeck = (): Array<Card> => {

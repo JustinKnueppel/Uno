@@ -13,7 +13,7 @@ describe("Deck", () => {
   it("Deck has size function", () => {
     const deck: Deck = new Deck();
     expect(deck.size).is.not.undefined;
-  })
+  });
 
   it("Starts with 108 cards", () => {
     const deck: Deck = new Deck();
@@ -24,7 +24,7 @@ describe("Deck", () => {
   it("Deck has deal function", () => {
     const deck: Deck = new Deck();
     expect(deck.deal).is.not.undefined;
-  })
+  });
 
   it("Deals a card", () => {
     const deck: Deck = new Deck();
@@ -42,6 +42,21 @@ describe("Deck", () => {
     expect(deck.size()).to.equal(0);
     expect(() => deck.deal()).to.throw();
   });
+
+  it("Has empty function", () => {
+    const deck: Deck = new Deck();
+    expect(deck.empty).is.not.undefined;
+  });
+
+  it("Empty function returns true when empty", () => {
+    const deck: Deck = deckWith0Cards();
+    expect(deck.empty()).to.be.true
+  })
+
+  it("Empty returns false when not empty", () => {
+    const deck: Deck = new Deck();
+    expect(deck.empty()).to.be.false
+  })
 });
 
 const deckWith0Cards = (): Deck => {
