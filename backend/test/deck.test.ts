@@ -10,11 +10,21 @@ describe("Deck", () => {
     expect(new Deck()).is.not.null;
   });
 
+  it("Deck has size function", () => {
+    const deck: Deck = new Deck();
+    expect(deck.size).is.not.undefined;
+  })
+
   it("Starts with 108 cards", () => {
     const deck: Deck = new Deck();
     expect(deck.size()).is.not.null;
     expect(deck.size()).to.equal(108);
   });
+
+  it("Deck has deal function", () => {
+    const deck: Deck = new Deck();
+    expect(deck.deal).is.not.undefined;
+  })
 
   it("Deals a card", () => {
     const deck: Deck = new Deck();
