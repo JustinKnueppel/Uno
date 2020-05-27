@@ -1,7 +1,13 @@
 class Player {
   readonly id: number;
-  constructor (id: number) {
+  private points: number;
+  constructor(id: number) {
     this.id = id;
+    this.points = 0;
+  }
+
+  getPoints(): number {
+    return this.points;
   }
 }
 
