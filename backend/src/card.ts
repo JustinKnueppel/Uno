@@ -5,6 +5,8 @@ class Card {
     this.type = type;
     this.color = color;
   }
+
+  readonly [Symbol.toStringTag] = "Card";
 }
 
 enum Type {

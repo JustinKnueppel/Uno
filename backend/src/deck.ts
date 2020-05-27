@@ -6,12 +6,16 @@ class Deck {
     this.cards = getFullDeck();
   }
 
+  deal(): Card {
+    return this.cards.pop() !;
+  }
+
   size(): number {
     return this.cards.length;
   }
 }
 
-const getFullDeck = () => {
+const getFullDeck = (): Array<Card> => {
   const cards = [];
   const colors = [Color.RED, Color.YELLOW, Color.BLUE, Color.GREEN];
   const twoOfEachColor = [
