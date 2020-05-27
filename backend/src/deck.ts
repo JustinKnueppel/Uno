@@ -20,6 +20,15 @@ class Deck {
   empty(): boolean {
     return this.size() === 0;
   }
+
+  shuffle(): void {
+    for(let currentIndex = this.cards.length - 1; currentIndex > 0; currentIndex--){
+      const randomIndex = Math.floor(Math.random() * currentIndex)
+      const temp = this.cards[currentIndex]
+      this.cards[currentIndex] = this.cards[randomIndex]
+      this.cards[randomIndex] = temp
+    }
+  }
 }
 
 const getFullDeck = (): Array<Card> => {
