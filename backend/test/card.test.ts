@@ -1,26 +1,21 @@
 import { expect } from "chai";
 import * as Card from "../src/card";
 
-describe("Card has class Card", () => {
-  it("Should exist", () => {
+describe("Card", () => {
+  it("Card class exists", () => {
     expect(Card.Card).is.not.undefined;
   });
-});
 
-describe("Card has Type enum", () => {
-  it("Should exist", () => {
+  it("Type enum exists", () => {
     expect(Card.Type).is.not.undefined;
   });
-});
 
-describe("Card has Color enum", () => {
-  it("Should exist", () => {
+  it("Color enum exists", () => {
     expect(Card.Color).is.not.undefined;
   });
-});
 
-describe("Card can be instantiated", () => {
-  it("Should create an object", () => {
+  it("Card can be instantiated", () => {
     expect(new Card.Card(Card.Type.ZERO, Card.Color.RED)).is.not.null;
   });
-});
+
+})
