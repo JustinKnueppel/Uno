@@ -37,5 +37,17 @@ describe("Helper functions", () => {
       const secondCard = new Card(Type.ONE, Color.RED)
       expect(Helpers.canPlayOn(firstCard, secondCard)).to.be.false
     })
+
+    it("Can play draw four on any color", () => {
+      const drawFour = new Card(Type.DRAW_FOUR, Color.WILD)
+      const blue = new Card(Type.ZERO, Color.BLUE);
+      const red = new Card(Type.ZERO, Color.RED);
+      const yellow = new Card(Type.ZERO, Color.YELLOW);
+      const green = new Card(Type.ZERO, Color.GREEN);
+      expect(Helpers.canPlayOn(drawFour, blue)).to.be.true
+      expect(Helpers.canPlayOn(drawFour, red)).to.be.true
+      expect(Helpers.canPlayOn(drawFour, yellow)).to.be.true
+      expect(Helpers.canPlayOn(drawFour, green)).to.be.true
+    })
   });
 });
