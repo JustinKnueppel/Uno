@@ -9,6 +9,10 @@ class Player {
   getPoints(): number {
     return this.points;
   }
+
+  addPoints(points: number): void {
+    this.points += points;
+  }
 }
 
 export default Player;

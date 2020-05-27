@@ -7,11 +7,21 @@ describe("Person", () => {
   });
 
   it("Can create object", () => {
-    expect(new Player(0)).is.not.null;
+    const id = 0;
+    expect(new Player(id)).is.not.null;
   });
 
   it("Has 0 points when created", () => {
-    const player = new Player(0);
+    const id = 0;
+    const player = new Player(id);
     expect(player.getPoints()).to.equal(0);
   });
+
+  it("Can add points to current score", () => {
+    const id = 0;
+    const player = new Player(id);
+    player.addPoints(10);
+    expect(player.getPoints()).to.equal(10);
+
+  })
 });
