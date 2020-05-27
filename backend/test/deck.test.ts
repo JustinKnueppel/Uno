@@ -26,4 +26,18 @@ describe("Deck", () => {
     deck.deal();
     expect(deck.size()).to.equal(107);
   });
+
+  it("Error thrown when dealing from empty deck", () => {
+    const deck: Deck = deckWith0Cards();
+    expect(deck.size()).to.equal(0);
+    expect(() => deck.deal()).to.throw();
+  });
 });
+
+const deckWith0Cards = (): Deck => {
+  const deck: Deck = new Deck();
+  while (deck.size() !== 0) {
+    deck.deal();
+  }
+  return deck;
+};

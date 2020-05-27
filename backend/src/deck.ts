@@ -7,7 +7,10 @@ class Deck {
   }
 
   deal(): Card {
-    return this.cards.pop() !;
+    if (this.size() === 0) {
+      throw new Error("Deck is empty");
+    }
+    return this.cards.pop()!;
   }
 
   size(): number {
