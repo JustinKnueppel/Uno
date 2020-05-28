@@ -20,11 +20,11 @@ enum Type {
   SEVEN = 7,
   EIGHT = 8,
   NINE = 9,
-  SKIP = 20,
-  REVERSE = 20,
-  DRAW_TWO = 20,
-  WILD = 50,
-  DRAW_FOUR = 50,
+  SKIP = 10,
+  REVERSE = 11,
+  DRAW_TWO = 12,
+  WILD = 13,
+  DRAW_FOUR = 14,
 }
 
 enum Color {

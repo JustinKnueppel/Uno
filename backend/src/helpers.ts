@@ -22,11 +22,22 @@ const score = (player: Player): number => {
 };
 
 const getScoreOfCard = (card: Card): number => {
-  return card.type;
+  switch (card.type) {
+    case Type.SKIP:
+    case Type.REVERSE:
+    case Type.DRAW_TWO:
+      return 20;
+    case Type.WILD:
+    case Type.DRAW_FOUR:
+      return 50;
+    default:
+      return card.type;
+  }
 };
 
 const parseCardString = (cardString: string): Card => {
-  if (!/([wW])|([bygr][\dsrd])/.test(cardString)) throw new Error("Bad card string");
+  if (!/([wW])|([bygr][\dsrd])/.test(cardString))
+    throw new Error("Bad card string");
   if (cardString === "w") return new Card(Type.WILD, Color.WILD);
   if (cardString === "W") return new Card(Type.DRAW_FOUR, Color.WILD);
 
@@ -89,6 +100,5 @@ const getTypeFromNumber = (number: number): Type => {
       return Type.NINE;
   }
 };
-
 
 export { canPlayOn, score, parseCardString };
