@@ -1,4 +1,4 @@
-import { Card } from "./card"
+import { Card } from "./card";
 
 class Player {
   readonly id: number;
@@ -31,6 +31,25 @@ class Player {
   giveCards(cards: Array<Card>): void {
     this.cards.push(...cards);
   }
+
+  sortHand(): void {
+    this.cards.sort(compareCards);
+  }
 }
+
+const compareCards = (card1: Card, card2: Card): number => {
+  if (card1.color === card2.color) {
+    return compareTypes(card1, card2);
+  }
+  return compareColors(card1, card2);
+};
+
+const compareTypes = (card1: Card, card2: Card): number => {
+  return card1.type - card2.type;
+};
+
+const compareColors = (card1: Card, card2: Card): number => {
+  return card1.color - card2.color;
+};
 
 export default Player;
