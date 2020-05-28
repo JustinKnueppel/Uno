@@ -63,6 +63,16 @@ describe("Helper functions", () => {
       expect(Helpers.score).is.not.undefined;
     });
 
+    it("Score number cards", () => {
+      const player = createPlayerWithCards(["b0", "g1", "r2", "y3", "b4", "g5", "r6", "y7", "b8", "g9"])
+      expect(Helpers.score(player)).to.equal(45)
+    })
+
+    it("Score special cards", () => {
+      const player = createPlayerWithCards(["bs", "gr", "yd", "w", "W"])
+      expect(Helpers.score(player)).to.equal(160)
+    })
+
     it("Score single player's hand", () => {
       const player = createPlayerWithCards(["b1", "b0", "gs", "W", "w"]);
       expect(Helpers.score(player)).to.equal(121);
