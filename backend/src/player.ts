@@ -1,9 +1,13 @@
+import { Card } from "./card"
+
 class Player {
   readonly id: number;
   private points: number;
+  private cards: Array<Card>;
   constructor(id: number) {
     this.id = id;
     this.points = 0;
+    this.cards = [];
   }
 
   getPoints(): number {
@@ -12,6 +16,18 @@ class Player {
 
   addPoints(points: number): void {
     this.points += points;
+  }
+
+  cardsRemaining(): number {
+    return this.cards.length;
+  }
+
+  getCards(): Array<Card> {
+    return [...this.cards];
+  }
+
+  giveCard(card: Card): void {
+    this.cards.push(card);
   }
 }
 
