@@ -28,8 +28,8 @@ class Player {
     return [...this.cards];
   }
 
-  giveCard(card: Card): void {
-    this.cards.push(card);
+  giveCards(cards: Array<Card>): void {
+    this.cards.push(...cards);
   }
 }
 

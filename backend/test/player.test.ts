@@ -14,31 +14,31 @@ describe("Player", () => {
   it("Player has name", () => {
     const player = basicPlayer();
     expect(player.name).is.not.undefined;
-  })
+  });
 
   it("Name defaults to id", () => {
     const player = basicPlayer();
-    expect(player.name).to.equal(player.id.toString())
-  })
+    expect(player.name).to.equal(player.id.toString());
+  });
 
   it("Name can be set", () => {
     const player = basicPlayer();
-    const name = "John"
-    player.name = name
-    expect(player.name).to.equal(name)
-  })
+    const name = "John";
+    player.name = name;
+    expect(player.name).to.equal(name);
+  });
 
   it("Name can be set in constructor", () => {
     const id = 0;
     const name = "John";
-    const player = new Player(id, name)
-    expect(player.name).to.equal(name)
-  })
+    const player = new Player(id, name);
+    expect(player.name).to.equal(name);
+  });
 
   it("Get points exists", () => {
     const player = basicPlayer();
-    expect(player.getPoints).is.not.undefined
-  })
+    expect(player.getPoints).is.not.undefined;
+  });
 
   it("Has 0 points when created", () => {
     const player = basicPlayer();
@@ -63,14 +63,25 @@ describe("Player", () => {
 
   it("Give card exists", () => {
     const player = basicPlayer();
-    expect(player.giveCard).is.not.undefined;
+    expect(player.giveCards).is.not.undefined;
   });
 
-  it("Player can receive card", () => {
+  it("Player can receive a single card", () => {
     const player = basicPlayer();
     const card: Card = new Card(Type.ONE, Color.BLUE);
-    player.giveCard(card);
+    player.giveCards([card]);
     expect(player.getCards()).to.deep.equal([card]);
+  });
+
+  it("Player can recieve multiple cards", () => {
+    const player = basicPlayer();
+    const cards = [
+      new Card(Type.ONE, Color.BLUE),
+      new Card(Type.THREE, Color.GREEN),
+      new Card(Type.DRAW_FOUR, Color.WILD),
+    ];
+    player.giveCards(cards);
+    expect(player.getCards()).to.deep.equal(cards);
   });
 
   it("Get cards exists", () => {
