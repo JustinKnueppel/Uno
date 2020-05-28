@@ -58,6 +58,44 @@ describe("Helper functions", () => {
     });
   });
 
+  describe("parseCardString", () => {
+    it("Creates red number card", () => {
+      const cardString = "r2"
+      const expectedCard = new Card(Type.TWO, Color.RED)
+      expect(Helpers.parseCardString(cardString)).to.deep.equal(expectedCard);
+    })
+
+    it("Creates blue skip", () => {
+      const cardString = "bs"
+      const expectedCard = new Card(Type.SKIP, Color.BLUE)
+      expect(Helpers.parseCardString(cardString)).to.deep.equal(expectedCard);
+    })
+
+    it("Creates green reverse", () => {
+      const cardString = "gr"
+      const expectedCard = new Card(Type.REVERSE, Color.GREEN)
+      expect(Helpers.parseCardString(cardString)).to.deep.equal(expectedCard);
+    })
+
+    it("Creates yellow draw two", () => {
+      const cardString = "yd"
+      const expectedCard = new Card(Type.DRAW_TWO, Color.YELLOW)
+      expect(Helpers.parseCardString(cardString)).to.deep.equal(expectedCard);
+    })
+
+    it("Creates wild", () => {
+      const cardString = "w"
+      const expectedCard = new Card(Type.WILD, Color.WILD)
+      expect(Helpers.parseCardString(cardString)).to.deep.equal(expectedCard);
+    })
+
+    it("Creates draw four", () => {
+      const cardString = "W"
+      const expectedCard = new Card(Type.DRAW_FOUR, Color.WILD)
+      expect(Helpers.parseCardString(cardString)).to.deep.equal(expectedCard);
+    })
+  })
+
   describe("score", () => {
     it("Score function exists", () => {
       expect(Helpers.score).is.not.undefined;
@@ -82,7 +120,7 @@ describe("Helper functions", () => {
 
 const createPlayerWithCards = (cardStrings: Array<string>): Player => {
   const player = basicPlayer();
-  const cards = cardStrings.map((cardString) => parseCardString(cardString));
+  const cards = cardStrings.map((cardString) => Helpers.parseCardString(cardString));
   player.giveCards(cards);
   return player;
 };
@@ -91,69 +129,4 @@ const basicPlayer = () => {
   const id = 0;
   const player = new Player(id);
   return player;
-};
-
-const parseCardString = (cardString: string): Card => {
-  if (!/([wW])|([bygr][\dsrd])/.test(cardString)) throw new Error("Bad card string");
-  if (cardString === "w") return new Card(Type.WILD, Color.WILD);
-  if (cardString === "W") return new Card(Type.DRAW_FOUR, Color.WILD);
-
-  const type = getTypeFromCardString(cardString);
-  const color = getColorFromCardString(cardString);
-
-  return new Card(type, color);
-};
-
-const getColorFromCardString = (cardString: string): Color => {
-  switch (cardString[0]) {
-    case "b":
-      return Color.BLUE;
-    case "y":
-      return Color.YELLOW;
-    case "g":
-      return Color.GREEN;
-    default:
-      return Color.RED;
-  }
-};
-
-const getTypeFromCardString = (cardString: string): Type => {
-  switch (cardString[1]) {
-    case "s":
-      return Type.SKIP;
-    case "r":
-      return Type.REVERSE;
-    case "d":
-      return Type.DRAW_TWO;
-    default:
-      return getTypeFromNumber(parseInt(cardString[1]));
-  }
-};
-
-const getTypeFromNumber = (number: number): Type => {
-  if (number < 0 || number > 9) {
-    throw new Error("Invalid number to get type");
-  }
-  switch (number) {
-    case 0:
-      return Type.ZERO;
-    case 1:
-      return Type.ONE;
-    case 2:
-      return Type.TWO;
-    case 3:
-      return Type.THREE;
-    case 4:
-      return Type.FOUR;
-    case 5:
-      return Type.FIVE;
-    case 6:
-      return Type.SIX;
-    case 7:
-      return Type.SEVEN;
-    case 8:
-      return Type.EIGHT;
-    default:
-      return Type.NINE;
-  }
 };
