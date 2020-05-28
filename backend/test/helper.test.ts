@@ -116,6 +116,17 @@ describe("Helper functions", () => {
       expect(Helpers.score(player)).to.equal(121);
     });
   });
+
+  describe('getFullDeck', () => {
+    it("exists", () => {
+      expect(Helpers.getFullDeck).is.not.undefined
+    })
+
+    it("Returns a deck", () => {
+      expect(Helpers.getFullDeck()).to.be.a("Deck")
+    })
+  })
+  
 });
 
 const createPlayerWithCards = (cardStrings: Array<string>): Player => {
