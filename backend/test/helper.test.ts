@@ -125,6 +125,10 @@ describe("Helper functions", () => {
     it("Returns a deck", () => {
       expect(Helpers.getFullDeck()).to.be.a("Deck")
     })
+
+    it("Has 108 cards", () => {
+      expect(Helpers.getFullDeck().size()).to.equal(108)
+    })
   })
   
 });
