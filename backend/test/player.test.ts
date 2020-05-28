@@ -11,6 +11,30 @@ describe("Player", () => {
     expect(basicPlayer()).is.not.null;
   });
 
+  it("Player has name", () => {
+    const player = basicPlayer();
+    expect(player.name).is.not.undefined;
+  })
+
+  it("Name defaults to id", () => {
+    const player = basicPlayer();
+    expect(player.name).to.equal(player.id.toString())
+  })
+
+  it("Name can be set", () => {
+    const player = basicPlayer();
+    const name = "John"
+    player.name = name
+    expect(player.name).to.equal(name)
+  })
+
+  it("Name can be set in constructor", () => {
+    const id = 0;
+    const name = "John";
+    const player = new Player(id, name)
+    expect(player.name).to.equal(name)
+  })
+
   it("Get points exists", () => {
     const player = basicPlayer();
     expect(player.getPoints).is.not.undefined

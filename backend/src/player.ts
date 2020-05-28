@@ -4,10 +4,12 @@ class Player {
   readonly id: number;
   private points: number;
   private cards: Array<Card>;
-  constructor(id: number) {
+  name: string;
+  constructor(id: number, name?: string) {
     this.id = id;
     this.points = 0;
     this.cards = [];
+    this.name = name || this.id.toString();
   }
 
   getPoints(): number {
