@@ -32,7 +32,7 @@ class Game {
     }
     const cards: Array<Card> = [];
     for (let _ = 0; _ < 7; _++) {
-      cards.push(this.deck.deal());
+      cards.push(this.deck.dealCard());
     }
     return cards;
   }

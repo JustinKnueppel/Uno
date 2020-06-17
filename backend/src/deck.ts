@@ -13,7 +13,7 @@ class Deck {
     this.cards.push(...cards);
   }
 
-  deal(): Card {
+  dealCard(): Card {
     if (this.size() === 0) {
       throw new Error("Deck is empty");
     }
