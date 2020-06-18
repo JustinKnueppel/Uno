@@ -1,5 +1,5 @@
 import Player from "./player";
-import Deck from "./deck";
+import { Deck } from "./cards";
 import { getFullDeck } from "./helpers";
 import { Card } from "./card";
 

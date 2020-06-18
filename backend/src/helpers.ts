@@ -1,6 +1,6 @@
 import { Card, Color, Type } from "./card";
 import Player from "./player";
-import Deck from "./deck";
+import { Deck } from "./cards";
 
 const canPlayOn = (nextCard: Card, currentCard: Card): boolean => {
   if (nextCard.color === Color.WILD) {
@@ -41,6 +41,26 @@ const getFullDeck = (): Deck => {
   const cards = getAllCards();
   deck.addCards(cards);
   return deck;
+};
+
+const sortedCards = (cards: Array<Card>): Array<Card> => {
+  const sorted = [...cards]
+  return sorted.sort(compareCards)
+}
+
+const compareCards = (card1: Card, card2: Card): number => {
+  if (card1.color === card2.color) {
+    return compareTypes(card1, card2);
+  }
+  return compareColors(card1, card2);
+};
+
+const compareTypes = (card1: Card, card2: Card): number => {
+  return card1.type - card2.type;
+};
+
+const compareColors = (card1: Card, card2: Card): number => {
+  return card1.color - card2.color;
 };
 
 const getAllCards = (): Array<Card> => {
@@ -148,4 +168,4 @@ const getTypeFromNumber = (number: number): Type => {
   }
 };
 
-export { canPlayOn, score, parseCardString, getFullDeck };
+export { canPlayOn, score, parseCardString, getFullDeck, sortedCards };
