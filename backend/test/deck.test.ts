@@ -9,7 +9,6 @@ describe("Deck", () => {
 
   it("Starts with 0 cards", () => {
     const deck: Deck = new Deck();
-    expect(deck.size()).is.not.null;
     expect(deck.size()).to.equal(0);
   });
 

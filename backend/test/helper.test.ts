@@ -5,10 +5,6 @@ import Player from "../src/player";
 
 describe("Helper functions", () => {
   describe("canPlayOn", () => {
-    it("Has can play on function", () => {
-      expect(Helpers.canPlayOn).is.not.undefined;
-    });
-
     it("Play different number on same color", () => {
       const firstBlue: Card = new Card(Type.ZERO, Color.BLUE);
       const secondBlue: Card = new Card(Type.EIGHT, Color.BLUE);
@@ -97,10 +93,6 @@ describe("Helper functions", () => {
   })
 
   describe("score", () => {
-    it("Score function exists", () => {
-      expect(Helpers.score).is.not.undefined;
-    });
-
     it("Score number cards", () => {
       const player = createPlayerWithCards(["b0", "g1", "r2", "y3", "b4", "g5", "r6", "y7", "b8", "g9"])
       expect(Helpers.score(player)).to.equal(45)
@@ -118,10 +110,6 @@ describe("Helper functions", () => {
   });
 
   describe('getFullDeck', () => {
-    it("exists", () => {
-      expect(Helpers.getFullDeck).is.not.undefined
-    })
-
     it("Returns a deck", () => {
       expect(Helpers.getFullDeck()).to.be.a("Deck")
     })

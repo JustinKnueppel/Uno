@@ -3,28 +3,9 @@ import Game from "../src/game";
 import Player from "../src/player";
 
 describe("Game", () => {
-  it("Class exists", () => {
-    expect(Game).is.not.undefined;
-  });
-
-  it("Object created", () => {
-    const game = createGameWithNPlayers(1)
-    expect(game).is.not.null;
-  })
-
-  it("Has cardsRemaining method", () => {
-    const game = createGameWithNPlayers(1)
-    expect(game.cardsRemaining).is.not.undefined
-  })
-
   it("Has 108 cards when initialized", () => {
     const game = createGameWithNPlayers(1);
     expect(game.cardsRemaining()).to.equal(108)
-  })
-
-  it("Has dealCards method", () => {
-    const game = createGameWithNPlayers(1)
-    expect(game.dealCards).is.not.undefined
   })
 
   it("Deals 7 cards to one player", () => {
