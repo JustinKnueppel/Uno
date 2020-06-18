@@ -15,7 +15,7 @@ class Deck {
 
   dealCard(): Card {
     if (this.size() === 0) {
-      throw new Error("Deck is empty");
+      throw new Error("Deck is empty.");
     }
     return this.cards.pop()!;
   }
@@ -78,13 +78,13 @@ class Discard {
   }
 
   top(): Card {
-    if (this._cards.length === 0) throw new Error("Empty discard has no top");
+    if (this._cards.length === 0) throw new Error("Empty discard has no top.");
     return this._cards[this._cards.length - 1];
   }
 
   removeBottomCards(): Array<Card> {
-    if (this._cards.length === 0) throw new Error("Empty discard has no bottom");
-    return this._cards.splice(1, this._cards.length - 2);
+    if (this._cards.length === 0) throw new Error("Empty discard has no bottom.");
+    return this._cards.splice(0, this._cards.length - 1);
   }
 }
 

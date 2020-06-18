@@ -95,38 +95,64 @@ describe("Hand", () => {
 });
 
 describe("Discard", () => {
-  it("Top throws error on empty discard", () => {
-    const discard = new Discard();
-    expect(discard.top()).to.throw()
+  describe("Top", () => {
+    it("Throws error on empty discard", () => {
+      const discard = new Discard();
+      expect(() => discard.top()).to.throw()
+    })
+  
+    it("Gives only card when discard has one card", () => {
+      const discard = new Discard();
+      const card = getSingleCard();
+      discard.add(card)
+      expect(discard.top()).to.equal(card);
+    })
+  
+    it("Gives most recent card", () => {
+      const discard = new Discard();
+      const card1 = new Card(Type.ZERO, Color.GREEN)
+      const card2 = new Card(Type.TWO, Color.GREEN)
+      const card3 = new Card(Type.THREE, Color.GREEN)
+      discard.add(card1)
+      discard.add(card2)
+      discard.add(card3)
+      expect(discard.top()).to.equal(card3)
+    })
   })
 
-  it("Top gives only card when discard has one card", () => {
-    const discard = new Discard();
-    const card = getSingleCard();
-    discard.add(card)
-    expect(discard.top()).to.equal(card);
-  })
+  describe("Remove bottom cards", () => {
+    it("Throws error when size is 0", () => {
+      const discard = new Discard();
+      expect(() => discard.removeBottomCards()).to.throw()
+    })
+  
+    it("Returns empty when size is 1", () => {
+      const discard = new Discard();
+      discard.add(getSingleCard())
+      expect(discard.removeBottomCards()).to.deep.equal([])
+    })
+    
+    it("Returns n - 1 cards", () => {
+      const discard = new Discard();
+      const card1 = new Card(Type.ZERO, Color.GREEN)
+      const card2 = new Card(Type.TWO, Color.GREEN)
+      const card3 = new Card(Type.THREE, Color.GREEN)
+      discard.add(card1)
+      discard.add(card2)
+      discard.add(card3)
+      expect(discard.removeBottomCards().length).to.equal(2)
+    })
 
-  it("Top gives most recent card", () => {
-    const discard = new Discard();
-    const card1 = new Card(Type.ZERO, Color.GREEN)
-    const card2 = new Card(Type.TWO, Color.GREEN)
-    const card3 = new Card(Type.THREE, Color.GREEN)
-    discard.add(card1)
-    discard.add(card2)
-    discard.add(card3)
-    expect(discard.top()).to.equal(card3)
-  })
-
-  it("Removing bottom cards throws error when size is 0", () => {
-    const discard = new Discard();
-    expect(discard.removeBottomCards()).to.throw()
-  })
-
-  it("Removing bottom cards returns empty when size is 1", () => {
-    const discard = new Discard();
-    discard.add(getSingleCard())
-    expect(discard.removeBottomCards()).to.deep.equal([])
+    it("Returns first n - 1 added", () => {
+      const discard = new Discard();
+      const card1 = new Card(Type.ZERO, Color.GREEN)
+      const card2 = new Card(Type.TWO, Color.GREEN)
+      const card3 = new Card(Type.THREE, Color.GREEN)
+      discard.add(card1)
+      discard.add(card2)
+      discard.add(card3)
+      expect(discard.removeBottomCards()).to.deep.equal([card1, card2])
+    })
   })
 })
 
