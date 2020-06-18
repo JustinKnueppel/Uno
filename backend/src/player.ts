@@ -1,14 +1,15 @@
 import { Card } from "./card";
+import { Hand } from "./cards";
 
 class Player {
   readonly id: number;
   private points: number;
-  private cards: Array<Card>;
+  private hand: Hand;
   name: string;
   constructor(id: number, name?: string) {
     this.id = id;
     this.points = 0;
-    this.cards = [];
+    this.hand = new Hand();
     this.name = name || this.id.toString();
   }
 
@@ -21,35 +22,22 @@ class Player {
   }
 
   cardsRemaining(): number {
-    return this.cards.length;
+    return this.hand.cardsRemaining();
   }
 
   getCards(): Array<Card> {
-    return [...this.cards];
+    return this.hand.cards();
   }
 
   giveCards(cards: Array<Card>): void {
-    this.cards.push(...cards);
+    cards.forEach((card) => {
+      this.hand.add(card);
+    });
   }
 
-  sortHand(): void {
-    this.cards.sort(compareCards);
+  sortedHand(): Array<Card> {
+    return this.hand.sorted();
   }
 }
-
-const compareCards = (card1: Card, card2: Card): number => {
-  if (card1.color === card2.color) {
-    return compareTypes(card1, card2);
-  }
-  return compareColors(card1, card2);
-};
-
-const compareTypes = (card1: Card, card2: Card): number => {
-  return card1.type - card2.type;
-};
-
-const compareColors = (card1: Card, card2: Card): number => {
-  return card1.color - card2.color;
-};
 
 export default Player;

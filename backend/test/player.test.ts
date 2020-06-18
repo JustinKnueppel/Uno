@@ -64,70 +64,62 @@ describe("Player", () => {
 
   it("Sort empty hand", () => {
     const person = basicPlayer();
-    person.sortHand();
-    expect(person.getCards()).to.deep.equal([]);
+    expect(person.sortedHand()).to.deep.equal([]);
   });
 
   it("Sort hand with one card", () => {
     const cardStrings = ["b1"];
     const person = playerWithCards(cardStrings);
-    person.sortHand();
     const expectedHand = getCardsFromCardStrings(cardStrings);
-    expect(person.getCards()).to.deep.equal(expectedHand);
+    expect(person.sortedHand()).to.deep.equal(expectedHand);
   });
 
   it("Sort hand with two cards out of order", () => {
     const cardStrings = ["b1", "b0"];
     const person = playerWithCards(cardStrings);
-    person.sortHand();
     const sortedCardStrings = ["b0", "b1"]
     const expectedHand = getCardsFromCardStrings(sortedCardStrings);
-    expect(person.getCards()).to.deep.equal(expectedHand);
+    expect(person.sortedHand()).to.deep.equal(expectedHand);
   })
 
   it("Sort hand with three cards out of order", () => {
     const cardStrings = ["b3", "b0", "b1"];
     const person = playerWithCards(cardStrings);
-    person.sortHand();
     const sortedCardStrings = ["b0", "b1", "b3"]
     const expectedHand = getCardsFromCardStrings(sortedCardStrings);
-    expect(person.getCards()).to.deep.equal(expectedHand);
+    expect(person.sortedHand()).to.deep.equal(expectedHand);
   })
 
   it("Sort hand with number and wild", () => {
     const cardStrings = ["w", "b5"];
     const person = playerWithCards(cardStrings);
-    person.sortHand();
     const sortedCardStrings = ["b5", "w"]
     const expectedHand = getCardsFromCardStrings(sortedCardStrings);
-    expect(person.getCards()).to.deep.equal(expectedHand);
+    expect(person.sortedHand()).to.deep.equal(expectedHand);
   })
 
   it("Sort hand based on color", () => {
     const cardStrings = ["g5", "b5", "r5", "y5", "W"];
     const person = playerWithCards(cardStrings);
-    person.sortHand();
     const sortedCardStrings = ["r5", "b5", "y5", "g5", "W"]
     const expectedHand = getCardsFromCardStrings(sortedCardStrings);
-    expect(person.getCards()).to.deep.equal(expectedHand);
+    expect(person.sortedHand()).to.deep.equal(expectedHand);
   })
 
   it("Sort special cards", () => {
     const cardStrings = ["w", "bs", "bd", "br", "W"];
     const person = playerWithCards(cardStrings);
-    person.sortHand();
     const sortedCardStrings = ["bs", "br", "bd", "w", "W"]
     const expectedHand = getCardsFromCardStrings(sortedCardStrings);
-    expect(person.getCards()).to.deep.equal(expectedHand);
+    expect(person.sortedHand()).to.deep.equal(expectedHand);
   })
 
   it("Sort hand on color and number", () => {
     const cardStrings = ["g5", "b4", "g3", "r5", "w", "ys", "y5", "W"];
     const person = playerWithCards(cardStrings);
-    person.sortHand();
     const sortedCardStrings = ["r5", "b4", "y5", "ys", "g3", "g5", "w", "W"]
     const expectedHand = getCardsFromCardStrings(sortedCardStrings);
-    expect(person.getCards()).to.deep.equal(expectedHand);
+    expect(person.sortedHand()).to.deep.equal(expectedHand);
   })
 });
 
