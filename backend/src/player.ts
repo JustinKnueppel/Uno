@@ -35,6 +35,11 @@ class Player {
     });
   }
 
+  playCard(card: Card): void {
+    if (!this.hand.containsCard(card)) throw new Error("Player does not have card.")
+    this.hand.removeCard(card);
+  }
+
   sortedHand(): Array<Card> {
     return this.hand.sorted();
   }

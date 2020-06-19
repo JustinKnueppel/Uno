@@ -1,28 +1,28 @@
 import { expect } from "chai";
 import * as Helpers from "../src/helpers";
-import { Card, Type, Color } from "../src/card";
+import { Card, CardType, CardColor } from "../src/card";
 import Player from "../src/player";
 
 describe("Helper functions", () => {
   describe("canPlayOn", () => {
     it("Play different number on same color", () => {
-      const firstBlue: Card = new Card(Type.ZERO, Color.BLUE);
-      const secondBlue: Card = new Card(Type.EIGHT, Color.BLUE);
+      const firstBlue: Card = new Card(CardType.ZERO, CardColor.BLUE);
+      const secondBlue: Card = new Card(CardType.EIGHT, CardColor.BLUE);
       expect(Helpers.canPlayOn(firstBlue, secondBlue)).to.be.true;
     });
 
     it("Play same type on different color", () => {
-      const firstZero = new Card(Type.ZERO, Color.BLUE);
-      const secondZero = new Card(Type.ZERO, Color.RED);
+      const firstZero = new Card(CardType.ZERO, CardColor.BLUE);
+      const secondZero = new Card(CardType.ZERO, CardColor.RED);
       expect(Helpers.canPlayOn(firstZero, secondZero)).to.be.true;
     });
 
     it("Play wild on any color", () => {
-      const wild = new Card(Type.WILD, Color.WILD);
-      const blue = new Card(Type.ZERO, Color.BLUE);
-      const red = new Card(Type.ZERO, Color.RED);
-      const yellow = new Card(Type.ZERO, Color.YELLOW);
-      const green = new Card(Type.ZERO, Color.GREEN);
+      const wild = new Card(CardType.WILD, CardColor.WILD);
+      const blue = new Card(CardType.ZERO, CardColor.BLUE);
+      const red = new Card(CardType.ZERO, CardColor.RED);
+      const yellow = new Card(CardType.ZERO, CardColor.YELLOW);
+      const green = new Card(CardType.ZERO, CardColor.GREEN);
       expect(Helpers.canPlayOn(wild, blue)).to.be.true;
       expect(Helpers.canPlayOn(wild, red)).to.be.true;
       expect(Helpers.canPlayOn(wild, yellow)).to.be.true;
@@ -30,17 +30,17 @@ describe("Helper functions", () => {
     });
 
     it("Cannot play non-wild card of different number and color", () => {
-      const firstCard = new Card(Type.ZERO, Color.BLUE);
-      const secondCard = new Card(Type.ONE, Color.RED);
+      const firstCard = new Card(CardType.ZERO, CardColor.BLUE);
+      const secondCard = new Card(CardType.ONE, CardColor.RED);
       expect(Helpers.canPlayOn(firstCard, secondCard)).to.be.false;
     });
 
     it("Can play draw four on any color", () => {
-      const drawFour = new Card(Type.DRAW_FOUR, Color.WILD);
-      const blue = new Card(Type.ZERO, Color.BLUE);
-      const red = new Card(Type.ZERO, Color.RED);
-      const yellow = new Card(Type.ZERO, Color.YELLOW);
-      const green = new Card(Type.ZERO, Color.GREEN);
+      const drawFour = new Card(CardType.DRAW_FOUR, CardColor.WILD);
+      const blue = new Card(CardType.ZERO, CardColor.BLUE);
+      const red = new Card(CardType.ZERO, CardColor.RED);
+      const yellow = new Card(CardType.ZERO, CardColor.YELLOW);
+      const green = new Card(CardType.ZERO, CardColor.GREEN);
       expect(Helpers.canPlayOn(drawFour, blue)).to.be.true;
       expect(Helpers.canPlayOn(drawFour, red)).to.be.true;
       expect(Helpers.canPlayOn(drawFour, yellow)).to.be.true;
@@ -48,8 +48,8 @@ describe("Helper functions", () => {
     });
 
     it("Can play number on correct colored wild", () => {
-      const number = new Card(Type.ZERO, Color.BLUE);
-      const wild = new Card(Type.WILD, Color.BLUE);
+      const number = new Card(CardType.ZERO, CardColor.BLUE);
+      const wild = new Card(CardType.WILD, CardColor.BLUE);
       expect(Helpers.canPlayOn(number, wild)).to.be.true;
     });
   });
@@ -57,37 +57,37 @@ describe("Helper functions", () => {
   describe("parseCardString", () => {
     it("Creates red number card", () => {
       const cardString = "r2"
-      const expectedCard = new Card(Type.TWO, Color.RED)
+      const expectedCard = new Card(CardType.TWO, CardColor.RED)
       expect(Helpers.parseCardString(cardString)).to.deep.equal(expectedCard);
     })
 
     it("Creates blue skip", () => {
       const cardString = "bs"
-      const expectedCard = new Card(Type.SKIP, Color.BLUE)
+      const expectedCard = new Card(CardType.SKIP, CardColor.BLUE)
       expect(Helpers.parseCardString(cardString)).to.deep.equal(expectedCard);
     })
 
     it("Creates green reverse", () => {
       const cardString = "gr"
-      const expectedCard = new Card(Type.REVERSE, Color.GREEN)
+      const expectedCard = new Card(CardType.REVERSE, CardColor.GREEN)
       expect(Helpers.parseCardString(cardString)).to.deep.equal(expectedCard);
     })
 
     it("Creates yellow draw two", () => {
       const cardString = "yd"
-      const expectedCard = new Card(Type.DRAW_TWO, Color.YELLOW)
+      const expectedCard = new Card(CardType.DRAW_TWO, CardColor.YELLOW)
       expect(Helpers.parseCardString(cardString)).to.deep.equal(expectedCard);
     })
 
     it("Creates wild", () => {
       const cardString = "w"
-      const expectedCard = new Card(Type.WILD, Color.WILD)
+      const expectedCard = new Card(CardType.WILD, CardColor.WILD)
       expect(Helpers.parseCardString(cardString)).to.deep.equal(expectedCard);
     })
 
     it("Creates draw four", () => {
       const cardString = "W"
-      const expectedCard = new Card(Type.DRAW_FOUR, Color.WILD)
+      const expectedCard = new Card(CardType.DRAW_FOUR, CardColor.WILD)
       expect(Helpers.parseCardString(cardString)).to.deep.equal(expectedCard);
     })
   })

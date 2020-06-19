@@ -1,6 +1,6 @@
 import { expect } from "chai";
 import { Deck, Hand, Discard } from "../src/cards";
-import { Card, Type, Color } from "../src/card";
+import { Card, CardType, CardColor } from "../src/card";
 
 describe("Deck", () => {
   it("Can be instantiated", () => {
@@ -53,7 +53,7 @@ const deckWithOneCard = (): Deck => {
 };
 
 const getSingleCard = (): Card => {
-  return new Card(Type.ONE, Color.BLUE);
+  return new Card(CardType.ONE, CardColor.BLUE);
 };
 
 describe("Hand", () => {
@@ -83,9 +83,9 @@ describe("Hand", () => {
 
   it("Sorted hand does not affect hand", () => {
     const hand = new Hand();
-    const blue0 = new Card(Type.ZERO, Color.BLUE);
-    const blue1 = new Card(Type.ONE, Color.BLUE);
-    const blue2 = new Card(Type.TWO, Color.BLUE);
+    const blue0 = new Card(CardType.ZERO, CardColor.BLUE);
+    const blue1 = new Card(CardType.ONE, CardColor.BLUE);
+    const blue2 = new Card(CardType.TWO, CardColor.BLUE);
     hand.add(blue1);
     hand.add(blue2);
     hand.add(blue0);
@@ -110,9 +110,9 @@ describe("Discard", () => {
   
     it("Gives most recent card", () => {
       const discard = new Discard();
-      const card1 = new Card(Type.ZERO, Color.GREEN)
-      const card2 = new Card(Type.TWO, Color.GREEN)
-      const card3 = new Card(Type.THREE, Color.GREEN)
+      const card1 = new Card(CardType.ZERO, CardColor.GREEN)
+      const card2 = new Card(CardType.TWO, CardColor.GREEN)
+      const card3 = new Card(CardType.THREE, CardColor.GREEN)
       discard.add(card1)
       discard.add(card2)
       discard.add(card3)
@@ -134,9 +134,9 @@ describe("Discard", () => {
     
     it("Returns n - 1 cards", () => {
       const discard = new Discard();
-      const card1 = new Card(Type.ZERO, Color.GREEN)
-      const card2 = new Card(Type.TWO, Color.GREEN)
-      const card3 = new Card(Type.THREE, Color.GREEN)
+      const card1 = new Card(CardType.ZERO, CardColor.GREEN)
+      const card2 = new Card(CardType.TWO, CardColor.GREEN)
+      const card3 = new Card(CardType.THREE, CardColor.GREEN)
       discard.add(card1)
       discard.add(card2)
       discard.add(card3)
@@ -145,9 +145,9 @@ describe("Discard", () => {
 
     it("Returns first n - 1 added", () => {
       const discard = new Discard();
-      const card1 = new Card(Type.ZERO, Color.GREEN)
-      const card2 = new Card(Type.TWO, Color.GREEN)
-      const card3 = new Card(Type.THREE, Color.GREEN)
+      const card1 = new Card(CardType.ZERO, CardColor.GREEN)
+      const card2 = new Card(CardType.TWO, CardColor.GREEN)
+      const card3 = new Card(CardType.THREE, CardColor.GREEN)
       discard.add(card1)
       discard.add(card2)
       discard.add(card3)

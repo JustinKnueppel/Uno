@@ -1,6 +1,6 @@
 import { expect } from "chai";
 import Player from "../src/player";
-import { Card, Type, Color } from "../src/card";
+import { Card, CardType, CardColor } from "../src/card";
 import { parseCardString } from "../src/helpers";
 
 describe("Player", () => {
@@ -41,7 +41,7 @@ describe("Player", () => {
 
   it("Player can receive a single card", () => {
     const player = basicPlayer();
-    const card: Card = new Card(Type.ONE, Color.BLUE);
+    const card: Card = new Card(CardType.ONE, CardColor.BLUE);
     player.giveCards([card]);
     expect(player.getCards()).to.deep.equal([card]);
   });
@@ -49,9 +49,9 @@ describe("Player", () => {
   it("Player can recieve multiple cards", () => {
     const player = basicPlayer();
     const cards = [
-      new Card(Type.ONE, Color.BLUE),
-      new Card(Type.THREE, Color.GREEN),
-      new Card(Type.DRAW_FOUR, Color.WILD),
+      new Card(CardType.ONE, CardColor.BLUE),
+      new Card(CardType.THREE, CardColor.GREEN),
+      new Card(CardType.DRAW_FOUR, CardColor.WILD),
     ];
     player.giveCards(cards);
     expect(player.getCards()).to.deep.equal(cards);

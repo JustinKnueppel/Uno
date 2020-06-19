@@ -3,9 +3,9 @@ import Game from "../src/game";
 import Player from "../src/player";
 
 describe("Game", () => {
-  it("Has 108 minus 7 cards per player cards when initialized", () => {
+  it("Has 108 minus 7 cards per player cards when initialized minus the top card", () => {
     const game = createGameWithNPlayers(1);
-    expect(game.cardsRemaining()).to.equal(108 - 1*7)
+    expect(game.cardsRemaining()).to.equal(108 - 1*7 - 1)
   })
 });
 

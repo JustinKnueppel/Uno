@@ -4,7 +4,7 @@
   "description": "Game of Uno",
   "main": "src/index.ts",
   "scripts": {
-    "start": "tsc && node dist/index.js",
+    "start": "tsc && node dist/src/index.js",
     "test": "mocha -r ts-node/register test/**/*.test.ts"
   },
   "keywords": [

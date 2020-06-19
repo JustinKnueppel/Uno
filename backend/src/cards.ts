@@ -61,6 +61,20 @@ class Hand {
     return this._cards.length;
   }
 
+  containsCard(targetCard: Card): boolean {
+    return this._cards.some(card => card === targetCard)
+  }
+
+  removeCard(targetCard: Card): void {
+    if (!this.containsCard(targetCard)) throw new Error("Hand does not contain card")
+    for (let i = 0; i < this._cards.length; i++) {
+      if (this._cards[i] === targetCard) {
+        this._cards.splice(i, 1);
+        break;
+      }
+    }
+  }
+
   sorted(): Array<Card> {
     return sortedCards(this._cards);
   }

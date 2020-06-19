@@ -1,9 +1,9 @@
-import { Card, Color, Type } from "./card";
+import { Card, Color, Type, CardColor, CardType } from "./card";
 import Player from "./player";
 import { Deck } from "./cards";
 
 const canPlayOn = (nextCard: Card, currentCard: Card): boolean => {
-  if (nextCard.color === Color.WILD) {
+  if (nextCard.color === CardColor.WILD) {
     return true;
   }
   if (nextCard.color === currentCard.color) {
@@ -24,15 +24,15 @@ const score = (player: Player): number => {
 
 const getScoreOfCard = (card: Card): number => {
   switch (card.type) {
-    case Type.SKIP:
-    case Type.REVERSE:
-    case Type.DRAW_TWO:
+    case CardType.SKIP:
+    case CardType.REVERSE:
+    case CardType.DRAW_TWO:
       return 20;
-    case Type.WILD:
-    case Type.DRAW_FOUR:
+    case CardType.WILD:
+    case CardType.DRAW_FOUR:
       return 50;
     default:
-      return card.type;
+      return card.type.id;
   }
 };
 
@@ -56,40 +56,40 @@ const compareCards = (card1: Card, card2: Card): number => {
 };
 
 const compareTypes = (card1: Card, card2: Card): number => {
-  return card1.type - card2.type;
+  return card1.type.id - card2.type.id;
 };
 
 const compareColors = (card1: Card, card2: Card): number => {
-  return card1.color - card2.color;
+  return card1.color.id - card2.color.id;
 };
 
 const getAllCards = (): Array<Card> => {
   const cards = [];
-  const colors = [Color.RED, Color.YELLOW, Color.BLUE, Color.GREEN];
+  const colors = [CardColor.RED, CardColor.YELLOW, CardColor.BLUE, CardColor.GREEN];
   const twoOfEachColor = [
-    Type.ONE,
-    Type.TWO,
-    Type.THREE,
-    Type.FOUR,
-    Type.FIVE,
-    Type.SIX,
-    Type.SEVEN,
-    Type.EIGHT,
-    Type.NINE,
-    Type.SKIP,
-    Type.REVERSE,
-    Type.DRAW_TWO,
+    CardType.ONE,
+    CardType.TWO,
+    CardType.THREE,
+    CardType.FOUR,
+    CardType.FIVE,
+    CardType.SIX,
+    CardType.SEVEN,
+    CardType.EIGHT,
+    CardType.NINE,
+    CardType.SKIP,
+    CardType.REVERSE,
+    CardType.DRAW_TWO,
   ];
   colors.forEach((color) => {
     twoOfEachColor.forEach((type) => {
       const card = new Card(type, color);
       cards.push(...getNCopiesOfCard(card, 2));
     });
-    cards.push(new Card(Type.ZERO, color));
+    cards.push(new Card(CardType.ZERO, color));
   });
 
-  cards.push(...getNCopiesOfCard(new Card(Type.WILD, Color.WILD), 4));
-  cards.push(...getNCopiesOfCard(new Card(Type.DRAW_FOUR, Color.WILD), 4));
+  cards.push(...getNCopiesOfCard(new Card(CardType.WILD, CardColor.WILD), 4));
+  cards.push(...getNCopiesOfCard(new Card(CardType.DRAW_FOUR, CardColor.WILD), 4));
 
   return cards;
 };
@@ -105,8 +105,8 @@ const getNCopiesOfCard = (card: Card, copies: number): Array<Card> => {
 const parseCardString = (cardString: string): Card => {
   if (!/([wW])|([bygr][\dsrd])/.test(cardString))
     throw new Error("Bad card string");
-  if (cardString === "w") return new Card(Type.WILD, Color.WILD);
-  if (cardString === "W") return new Card(Type.DRAW_FOUR, Color.WILD);
+  if (cardString === "w") return new Card(CardType.WILD, CardColor.WILD);
+  if (cardString === "W") return new Card(CardType.DRAW_FOUR, CardColor.WILD);
 
   const type = getTypeFromCardString(cardString);
   const color = getColorFromCardString(cardString);
@@ -117,24 +117,24 @@ const parseCardString = (cardString: string): Card => {
 const getColorFromCardString = (cardString: string): Color => {
   switch (cardString[0]) {
     case "b":
-      return Color.BLUE;
+      return CardColor.BLUE;
     case "y":
-      return Color.YELLOW;
+      return CardColor.YELLOW;
     case "g":
-      return Color.GREEN;
+      return CardColor.GREEN;
     default:
-      return Color.RED;
+      return CardColor.RED;
   }
 };
 
 const getTypeFromCardString = (cardString: string): Type => {
   switch (cardString[1]) {
     case "s":
-      return Type.SKIP;
+      return CardType.SKIP;
     case "r":
-      return Type.REVERSE;
+      return CardType.REVERSE;
     case "d":
-      return Type.DRAW_TWO;
+      return CardType.DRAW_TWO;
     default:
       return getTypeFromNumber(parseInt(cardString[1]));
   }
@@ -146,25 +146,25 @@ const getTypeFromNumber = (number: number): Type => {
   }
   switch (number) {
     case 0:
-      return Type.ZERO;
+      return CardType.ZERO;
     case 1:
-      return Type.ONE;
+      return CardType.ONE;
     case 2:
-      return Type.TWO;
+      return CardType.TWO;
     case 3:
-      return Type.THREE;
+      return CardType.THREE;
     case 4:
-      return Type.FOUR;
+      return CardType.FOUR;
     case 5:
-      return Type.FIVE;
+      return CardType.FIVE;
     case 6:
-      return Type.SIX;
+      return CardType.SIX;
     case 7:
-      return Type.SEVEN;
+      return CardType.SEVEN;
     case 8:
-      return Type.EIGHT;
+      return CardType.EIGHT;
     default:
-      return Type.NINE;
+      return CardType.NINE;
   }
 };
 
